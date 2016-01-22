@@ -1,8 +1,7 @@
-import data.Document;
-import data.DocumentMatrix;
-import data.InverseDocumentFrequency;
-import data.WordMatrix;
 import manager.FileManager;
+import summarization.AggregateSimilarity;
+import summarization.Frequency;
+import summarization.Paradigmatic;
 
 import java.util.ArrayList;
 
@@ -13,15 +12,15 @@ public class main {
 
     public static void main(String args[]) {
 
-        String fileContent = FileManager.getInstance().readFile("Dataset.txt");
-        ArrayList<Document> documents = new ArrayList<Document>();
-        for(String line : fileContent.split(FileManager.LINE_SEPARATOR)) {
-            Document document = new Document(line);
-            documents.add(document);
-        }
-        DocumentMatrix documentMatrix = new DocumentMatrix(documents);
-        System.out.println(InverseDocumentFrequency.getInstance().getIDF(documentMatrix.getMatrix(), documents.size()));
-        WordMatrix wordMatrix = new WordMatrix(documents);
-        System.out.println(InverseDocumentFrequency.getInstance().getIDF2(wordMatrix.getMatrix(), documents.size()));
+        String word1 = "Microsoft";
+        String word2 = "palco";
+        Paradigmatic paradigmatic = new Paradigmatic("Dataset.txt");
+        System.out.println("Relation paradigmatic between " + word1 + " and " + word2 + " = " + paradigmatic.getRelation(word1, word2));
+        System.out.println("\n\n\n");
+        Frequency frequency = new Frequency("Dataset.txt");
+        System.out.println("Frequency of " + word1 + " = " + frequency.getWordFrequency("Microsoft"));
+        System.out.println("\n\n\n");
+        AggregateSimilarity aggregateSimilarity = new AggregateSimilarity("Dataset.txt");
+        System.out.println("Aggreate Similarity=" + FileManager.LINE_SEPARATOR + aggregateSimilarity.getAggregateSimilarity());
     }
 }

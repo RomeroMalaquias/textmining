@@ -9,12 +9,12 @@ import java.util.HashMap;
 public class DocumentMatrix  {
     private HashMap<String,ArrayList<Integer>> matrix;
     public DocumentMatrix(ArrayList<Document> documents) {
-        matrix = new HashMap<String, ArrayList<Integer>>();
+        matrix = new HashMap<>();
         for(int i = 0; i < documents.size(); i++) {
             for (String word : documents.get(i).getWords()) {
-                ArrayList<Integer> aux = new ArrayList<Integer>();
+                ArrayList<Integer> aux = new ArrayList<>();
                 if (matrix.containsKey(word)){
-                   aux = matrix.get(word);
+                    aux = matrix.get(word);
                 }
                 aux.add(i);
                 matrix.put(word, aux);
